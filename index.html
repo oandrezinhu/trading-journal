@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Trading <span>Journal</span></h1>
+      <p class="subtitle">Registre e analise suas operações</p>
+    </header>
+
+    <form id="tradeForm">
+
+      <!-- IDENTIFICAÇÃO -->
+      <section class="card">
+        <h2>📅 Identificação</h2>
+        <div class="row">
+          <div class="field">
+            <label for="data">📅 Data</label>
+            <input type="date" id="data" name="data" required />
+          </div>
+          <div class="field">
+            <label for="horario">⏰ Horário</label>
+            <input type="time" id="horario" name="horario" required />
+          </div>
+          <div class="field">
+            <label for="ativo">📊 Ativo</label>
+            <select id="ativo" name="ativo" required>
+              <option value="">Selecionar...</option>
+              <option value="XAUUSD">XAUUSD</option>
+              <option value="EURUSD">EURUSD</option>
+              <option value="USDJPY">USDJPY</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETUP -->
+      <section class="card">
+        <h2>🎯 Setup</h2>
+        <div class="checklist">
+          <label class="check-item">
+            <input type="checkbox" name="setup" value="Tendência M15 confirmada" />
+            <span class="check-box"></span>
+            Tendência M15 confirmada
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="setup" value="Liquidez identificada" />
+            <span class="check-box"></span>
+            Liquidez identificada
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="setup" value="Sweep ocorreu" />
+            <span class="check-box"></span>
+            Sweep ocorreu
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="setup" value="Quebra de estrutura (CHOCH/BOS)" />
+            <span class="check-box"></span>
+            Quebra de estrutura (CHOCH/BOS)
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="setup" value="Pullback + confirmação" />
+            <span class="check-box"></span>
+            Pullback + confirmação
+          </label>
+        </div>
+      </section>
+
+      <!-- ENTRADA -->
+      <section class="card">
+        <h2>📥 Entrada</h2>
+        <div class="row">
+          <div class="field">
+            <label for="preco">Preço</label>
+            <div class="number-wrap">
+              <input type="number" id="preco" name="preco" step="0.00001" placeholder="0.00000" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="lote">Lote</label>
+            <div class="number-wrap">
+              <input type="number" id="lote" name="lote" step="0.01" placeholder="0.01" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="stop">Stop (pips/pontos)</label>
+            <div class="number-wrap">
+              <input type="number" id="stop" name="stop" step="0.1" placeholder="0" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="tp">Take Profit</label>
+            <div class="number-wrap">
+              <input type="number" id="tp" name="tp" step="0.00001" placeholder="0.00000" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTADO -->
+      <section class="card">
+        <h2>💰 Resultado</h2>
+        <div class="radio-group">
+          <label class="radio-item win">
+            <input type="radio" name="resultado" value="Win" required />
+            <span class="radio-box">✅ Win</span>
+          </label>
+          <label class="radio-item loss">
+            <input type="radio" name="resultado" value="Loss" />
+            <span class="radio-box">❌ Loss</span>
+          </label>
+          <label class="radio-item be">
+            <input type="radio" name="resultado" value="BE" />
+            <span class="radio-box">➖ BE</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- RISCO & RESULTADO FINANCEIRO -->
+      <section class="card">
+        <h2>📉 Risco & Resultado Financeiro</h2>
+        <div class="row">
+          <div class="field">
+            <label for="valorArriscado">💰 Valor arriscado ($)</label>
+            <div class="number-wrap">
+              <input type="number" id="valorArriscado" name="valorArriscado" step="0.01" value="25" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sinal">Sinal</label>
+            <select id="sinal" name="sinal">
+              <option value="+">+ (Ganho)</option>
+              <option value="-">- (Perda)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="resultadoValor">📈 Resultado em $ (valor)</label>
+            <div class="number-wrap">
+              <input type="number" id="resultadoValor" name="resultadoValor" step="0.01" placeholder="0.00" required />
+              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EMOCIONAL -->
+      <section class="card">
+        <h2>🧠 Emocional</h2>
+        <div class="radio-group">
+          <label class="radio-item calmo">
+            <input type="radio" name="emocional" value="Calmo" required />
+            <span class="radio-box">😌 Calmo</span>
+          </label>
+          <label class="radio-item ansioso">
+            <input type="radio" name="emocional" value="Ansioso" />
+            <span class="radio-box">😰 Ansioso</span>
+          </label>
+          <label class="radio-item impulsivo">
+            <input type="radio" name="emocional" value="Impulsivo" />
+            <span class="radio-box">😤 Impulsivo</span>
+          </label>
+          <label class="radio-item overtrade">
+            <input type="radio" name="emocional" value="Overtrade" />
+            <span class="radio-box">🔁 Overtrade</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- OBSERVAÇÕES -->
+      <section class="card">
+        <h2>📌 Observações</h2>
+        <div class="obs-group">
+          <div class="field">
+            <label for="seguiuPlano">Seguiu o plano?</label>
+            <select id="seguiuPlano" name="seguiuPlano">
+              <option value="">Selecionar...</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+              <option value="Parcialmente">Parcialmente</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="entrouCedo">Entrou cedo?</label>
+            <select id="entrouCedo" name="entrouCedo">
+              <option value="">Selecionar...</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hesitou">Hesitou?</label>
+            <select id="hesitou" name="hesitou">
+              <option value="">Selecionar...</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+        </div>
+        <div class="field full-width">
+          <label for="observacoes">Observações adicionais</label>
+          <textarea id="observacoes" name="observacoes" rows="4" placeholder="Anote detalhes relevantes sobre este trade..."></textarea>
+        </div>
+      </section>
+
+      <!-- PRINT DO TRADE -->
+      <section class="card">
+        <h2>📸 Print do Trade</h2>
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="printTrade" name="printTrade" accept="image/*" />
+          <div class="upload-placeholder" id="uploadPlaceholder">
+            <span class="upload-icon">📷</span>
+            <span>Clique ou arraste a imagem do trade aqui</span>
+          </div>
+          <img id="previewImg" src="" alt="Preview" style="display:none;" />
+        </div>
+      </section>
+
+      <!-- AÇÕES -->
+      <div class="actions">
+        <button type="button" id="btnPreview" class="btn btn-secondary">👁 Pré-visualizar</button>
+        <button type="button" id="btnGenerate" class="btn btn-primary">📄 Gerar PDF</button>
+        <button type="reset" class="btn btn-ghost">🗑 Limpar</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- MODAL DE PRÉ-VISUALIZAÇÃO -->
+  <div id="previewModal" class="modal" style="display:none;">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Pré-visualização do PDF</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div id="pdfPreview" class="pdf-preview"></div>
+      <div class="modal-actions">
+        <button type="button" id="btnDownload" class="btn btn-primary">⬇ Baixar PDF</button>
+        <button type="button" id="btnModalClose" class="btn btn-ghost">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
