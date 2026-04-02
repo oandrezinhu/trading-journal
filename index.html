@@ -6,255 +6,373 @@
   <title>Trading Journal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <h1>Trading <span>Journal</span></h1>
-      <p class="subtitle">Registre e analise suas operações</p>
-    </header>
+<div class="app">
 
-    <form id="tradeForm">
+  <!-- ═══════════════════════════════════════
+       SIDEBAR
+  ════════════════════════════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="#e8192c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="16 7 22 7 22 13" stroke="#e8192c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Trading <strong>Journal</strong></span>
+    </div>
 
-      <!-- IDENTIFICAÇÃO -->
-      <section class="card">
-        <h2>📅 Identificação</h2>
-        <div class="row">
-          <div class="field">
-            <label for="data">📅 Data</label>
-            <input type="date" id="data" name="data" required />
-          </div>
-          <div class="field">
-            <label for="horario">⏰ Horário</label>
-            <input type="time" id="horario" name="horario" required />
-          </div>
-          <div class="field">
-            <label for="ativo">📊 Ativo</label>
-            <select id="ativo" name="ativo" required>
-              <option value="">Selecionar...</option>
-              <option value="XAUUSD">XAUUSD</option>
-              <option value="EURUSD">EURUSD</option>
-              <option value="USDJPY">USDJPY</option>
-            </select>
-          </div>
-        </div>
-      </section>
+    <nav class="sidebar-nav">
+      <a class="nav-item" data-page="home" href="#">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a class="nav-item active" data-page="calendar" href="#">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Calendário</span>
+      </a>
+    </nav>
 
-      <!-- SETUP -->
-      <section class="card">
-        <h2>🎯 Setup</h2>
-        <div class="checklist">
-          <label class="check-item">
-            <input type="checkbox" name="setup" value="Tendência M15 confirmada" />
-            <span class="check-box"></span>
-            Tendência M15 confirmada
-          </label>
-          <label class="check-item">
-            <input type="checkbox" name="setup" value="Liquidez identificada" />
-            <span class="check-box"></span>
-            Liquidez identificada
-          </label>
-          <label class="check-item">
-            <input type="checkbox" name="setup" value="Sweep ocorreu" />
-            <span class="check-box"></span>
-            Sweep ocorreu
-          </label>
-          <label class="check-item">
-            <input type="checkbox" name="setup" value="Quebra de estrutura (CHOCH/BOS)" />
-            <span class="check-box"></span>
-            Quebra de estrutura (CHOCH/BOS)
-          </label>
-          <label class="check-item">
-            <input type="checkbox" name="setup" value="Pullback + confirmação" />
-            <span class="check-box"></span>
-            Pullback + confirmação
-          </label>
-        </div>
-      </section>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-label">Armazenamento</div>
+      <div class="sidebar-footer-value">Local (browser)</div>
+    </div>
+  </aside>
 
-      <!-- ENTRADA -->
-      <section class="card">
-        <h2>📥 Entrada</h2>
-        <div class="row">
-          <div class="field">
-            <label for="preco">Preço</label>
-            <div class="number-wrap">
-              <input type="number" id="preco" name="preco" step="0.00001" placeholder="0.00000" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="lote">Lote</label>
-            <div class="number-wrap">
-              <input type="number" id="lote" name="lote" step="0.01" placeholder="0.01" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="stop">Stop (pips/pontos)</label>
-            <div class="number-wrap">
-              <input type="number" id="stop" name="stop" step="0.1" placeholder="0" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="tp">Take Profit</label>
-            <div class="number-wrap">
-              <input type="number" id="tp" name="tp" step="0.00001" placeholder="0.00000" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT
+  ════════════════════════════════════════ -->
+  <main class="main-content">
 
-      <!-- RESULTADO -->
-      <section class="card">
-        <h2>💰 Resultado</h2>
-        <div class="radio-group">
-          <label class="radio-item win">
-            <input type="radio" name="resultado" value="Win" required />
-            <span class="radio-box">✅ Win</span>
-          </label>
-          <label class="radio-item loss">
-            <input type="radio" name="resultado" value="Loss" />
-            <span class="radio-box">❌ Loss</span>
-          </label>
-          <label class="radio-item be">
-            <input type="radio" name="resultado" value="BE" />
-            <span class="radio-box">➖ BE</span>
-          </label>
-        </div>
-      </section>
+    <!-- ── HOME PAGE ────────────────────── -->
+    <section class="page" id="page-home">
+      <div class="page-header">
+        <h1 class="page-title">Home</h1>
+      </div>
+      <div class="coming-soon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#e8192c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+          <polyline points="16 7 22 7 22 13"/>
+        </svg>
+        <p class="coming-soon-title">Dashboard em breve</p>
+        <p class="coming-soon-sub">Análises avançadas, curva de patrimônio e métricas detalhadas serão implementadas aqui.</p>
+      </div>
+    </section>
 
-      <!-- RISCO & RESULTADO FINANCEIRO -->
-      <section class="card">
-        <h2>📉 Risco & Resultado Financeiro</h2>
-        <div class="row">
-          <div class="field">
-            <label for="valorArriscado">💰 Valor arriscado ($)</label>
-            <div class="number-wrap">
-              <input type="number" id="valorArriscado" name="valorArriscado" step="0.01" value="25" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="sinal">Sinal</label>
-            <select id="sinal" name="sinal">
-              <option value="+">+ (Ganho)</option>
-              <option value="-">- (Perda)</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="resultadoValor">📈 Resultado em $ (valor)</label>
-            <div class="number-wrap">
-              <input type="number" id="resultadoValor" name="resultadoValor" step="0.01" placeholder="0.00" required />
-              <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- ── CALENDAR PAGE ─────────────────── -->
+    <section class="page active" id="page-calendar">
 
-      <!-- EMOCIONAL -->
-      <section class="card">
-        <h2>🧠 Emocional</h2>
-        <div class="radio-group">
-          <label class="radio-item calmo">
-            <input type="radio" name="emocional" value="Calmo" required />
-            <span class="radio-box">😌 Calmo</span>
-          </label>
-          <label class="radio-item ansioso">
-            <input type="radio" name="emocional" value="Ansioso" />
-            <span class="radio-box">😰 Ansioso</span>
-          </label>
-          <label class="radio-item impulsivo">
-            <input type="radio" name="emocional" value="Impulsivo" />
-            <span class="radio-box">😤 Impulsivo</span>
-          </label>
-          <label class="radio-item overtrade">
-            <input type="radio" name="emocional" value="Overtrade" />
-            <span class="radio-box">🔁 Overtrade</span>
-          </label>
-        </div>
-      </section>
-
-      <!-- OBSERVAÇÕES -->
-      <section class="card">
-        <h2>📌 Observações</h2>
-        <div class="obs-group">
-          <div class="field">
-            <label for="seguiuPlano">Seguiu o plano?</label>
-            <select id="seguiuPlano" name="seguiuPlano">
-              <option value="">Selecionar...</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-              <option value="Parcialmente">Parcialmente</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="entrouCedo">Entrou cedo?</label>
-            <select id="entrouCedo" name="entrouCedo">
-              <option value="">Selecionar...</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="hesitou">Hesitou?</label>
-            <select id="hesitou" name="hesitou">
-              <option value="">Selecionar...</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-            </select>
-          </div>
-        </div>
-        <div class="field full-width">
-          <label for="observacoes">Observações adicionais</label>
-          <textarea id="observacoes" name="observacoes" rows="4" placeholder="Anote detalhes relevantes sobre este trade..."></textarea>
-        </div>
-      </section>
-
-      <!-- PRINT DO TRADE -->
-      <section class="card">
-        <h2>📸 Print do Trade</h2>
-        <div class="upload-area" id="uploadArea">
-          <input type="file" id="printTrade" name="printTrade" accept="image/*" />
-          <div class="upload-placeholder" id="uploadPlaceholder">
-            <span class="upload-icon">📷</span>
-            <span>Clique ou arraste a imagem do trade aqui</span>
-          </div>
-          <img id="previewImg" src="" alt="Preview" style="display:none;" />
-        </div>
-      </section>
-
-      <!-- AÇÕES -->
-      <div class="actions">
-        <button type="button" id="btnPreview" class="btn btn-secondary">👁 Pré-visualizar</button>
-        <button type="button" id="btnGenerate" class="btn btn-primary">📄 Gerar PDF</button>
-        <button type="reset" class="btn btn-ghost">🗑 Limpar</button>
+      <div class="page-header">
+        <h1 class="page-title">Calendário de Operações</h1>
+        <button class="btn btn-primary btn-sm" id="btnNewTrade">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Nova Operação
+        </button>
       </div>
 
-    </form>
-  </div>
+      <!-- Stats bar -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-card">
+          <div class="stat-label">Resultado Total</div>
+          <div class="stat-value" id="statTotal">US$ 0,00</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Taxa de Acerto</div>
+          <div class="stat-value" id="statWinRate">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Operações</div>
+          <div class="stat-value neutral" id="statOps">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Lucro Bruto</div>
+          <div class="stat-value positive" id="statProfit">US$ 0,00</div>
+        </div>
+        <div class="stat-card loss-card">
+          <div class="stat-label">Prejuízo Bruto</div>
+          <div class="stat-value negative" id="statLoss">-US$ 0,00</div>
+        </div>
+      </div>
 
-  <!-- MODAL DE PRÉ-VISUALIZAÇÃO -->
-  <div id="previewModal" class="modal" style="display:none;">
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Pré-visualização do PDF</h2>
-        <button class="modal-close" id="modalClose">✕</button>
+      <!-- Calendar -->
+      <div class="cal-wrapper">
+        <div class="cal-header">
+          <button class="cal-nav" id="calPrev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <span class="cal-month-label" id="calMonthLabel"></span>
+          <button class="cal-nav" id="calNext">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="cal-grid-wrapper">
+          <div class="cal-weekdays">
+            <div>DOM</div><div>SEG</div><div>TER</div>
+            <div>QUA</div><div>QUI</div><div>SEX</div><div>SÁB</div>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
       </div>
-      <div id="pdfPreview" class="pdf-preview"></div>
-      <div class="modal-actions">
-        <button type="button" id="btnDownload" class="btn btn-primary">⬇ Baixar PDF</button>
-        <button type="button" id="btnModalClose" class="btn btn-ghost">Fechar</button>
+
+    </section>
+  </main>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TRADE FORM MODAL (modal flutuante)
+════════════════════════════════════════ -->
+<div class="trade-modal" id="tradeModal">
+  <div class="trade-modal-overlay" id="tradeModalOverlay"></div>
+  <div class="trade-modal-panel">
+
+    <div class="trade-modal-header">
+      <div>
+        <div class="trade-modal-date" id="tradeModalDate"></div>
+        <h2 class="trade-modal-title">Registrar Operação</h2>
       </div>
+      <button class="modal-close" id="tradeModalClose">✕</button>
+    </div>
+
+    <div class="trade-modal-body">
+      <form id="tradeForm" novalidate>
+
+        <!-- IDENTIFICAÇÃO -->
+        <section class="card">
+          <h2>Identificação</h2>
+          <div class="row">
+            <div class="field">
+              <label for="data">Data</label>
+              <input type="date" id="data" name="data" required />
+            </div>
+            <div class="field">
+              <label for="horario">Horário</label>
+              <input type="time" id="horario" name="horario" required />
+            </div>
+            <div class="field">
+              <label for="ativo">Ativo</label>
+              <select id="ativo" name="ativo" required>
+                <option value="">Selecionar...</option>
+                <option value="XAUUSD">XAUUSD</option>
+                <option value="EURUSD">EURUSD</option>
+                <option value="USDJPY">USDJPY</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETUP -->
+        <section class="card">
+          <h2>Setup</h2>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox" name="setup" value="Tendência M15 confirmada" /><span class="check-box"></span>Tendência M15 confirmada</label>
+            <label class="check-item"><input type="checkbox" name="setup" value="Liquidez identificada" /><span class="check-box"></span>Liquidez identificada</label>
+            <label class="check-item"><input type="checkbox" name="setup" value="Sweep ocorreu" /><span class="check-box"></span>Sweep ocorreu</label>
+            <label class="check-item"><input type="checkbox" name="setup" value="Quebra de estrutura (CHOCH/BOS)" /><span class="check-box"></span>Quebra de estrutura (CHOCH/BOS)</label>
+            <label class="check-item"><input type="checkbox" name="setup" value="Pullback + confirmação" /><span class="check-box"></span>Pullback + confirmação</label>
+          </div>
+        </section>
+
+        <!-- ENTRADA -->
+        <section class="card">
+          <h2>Entrada</h2>
+          <div class="row">
+            <div class="field">
+              <label for="preco">Preço</label>
+              <div class="number-wrap">
+                <input type="number" id="preco" name="preco" step="0.00001" placeholder="0.00000" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="lote">Lote</label>
+              <div class="number-wrap">
+                <input type="number" id="lote" name="lote" step="0.01" placeholder="0.01" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="stop">Stop (pips/pontos)</label>
+              <div class="number-wrap">
+                <input type="number" id="stop" name="stop" step="0.1" placeholder="0" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="tp">Take Profit</label>
+              <div class="number-wrap">
+                <input type="number" id="tp" name="tp" step="0.00001" placeholder="0.00000" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RESULTADO -->
+        <section class="card">
+          <h2>Resultado</h2>
+          <div class="radio-group">
+            <label class="radio-item win"><input type="radio" name="resultado" value="Win" required /><span class="radio-box">✅ Win</span></label>
+            <label class="radio-item loss"><input type="radio" name="resultado" value="Loss" /><span class="radio-box">❌ Loss</span></label>
+            <label class="radio-item be"><input type="radio" name="resultado" value="BE" /><span class="radio-box">➖ BE</span></label>
+          </div>
+        </section>
+
+        <!-- RISCO & RESULTADO FINANCEIRO -->
+        <section class="card">
+          <h2>Risco &amp; Resultado Financeiro</h2>
+          <div class="row">
+            <div class="field">
+              <label for="valorArriscado">Valor arriscado ($)</label>
+              <div class="number-wrap">
+                <input type="number" id="valorArriscado" name="valorArriscado" step="0.01" value="25" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="sinal">Sinal</label>
+              <select id="sinal" name="sinal">
+                <option value="+">+ (Ganho)</option>
+                <option value="-">- (Perda)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="resultadoValor">Resultado em $ (valor)</label>
+              <div class="number-wrap">
+                <input type="number" id="resultadoValor" name="resultadoValor" step="0.01" placeholder="0.00" required />
+                <div class="spin-btns"><button type="button" tabindex="-1">▲</button><button type="button" tabindex="-1">▼</button></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EMOCIONAL -->
+        <section class="card">
+          <h2>Emocional</h2>
+          <div class="radio-group">
+            <label class="radio-item calmo"><input type="radio" name="emocional" value="Calmo" required /><span class="radio-box">😌 Calmo</span></label>
+            <label class="radio-item ansioso"><input type="radio" name="emocional" value="Ansioso" /><span class="radio-box">😰 Ansioso</span></label>
+            <label class="radio-item impulsivo"><input type="radio" name="emocional" value="Impulsivo" /><span class="radio-box">😤 Impulsivo</span></label>
+            <label class="radio-item overtrade"><input type="radio" name="emocional" value="Overtrade" /><span class="radio-box">🔁 Overtrade</span></label>
+          </div>
+        </section>
+
+        <!-- OBSERVAÇÕES -->
+        <section class="card">
+          <h2>Observações</h2>
+          <div class="obs-group">
+            <div class="field">
+              <label for="seguiuPlano">Seguiu o plano?</label>
+              <select id="seguiuPlano" name="seguiuPlano">
+                <option value="">Selecionar...</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+                <option value="Parcialmente">Parcialmente</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="entrouCedo">Entrou cedo?</label>
+              <select id="entrouCedo" name="entrouCedo">
+                <option value="">Selecionar...</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="hesitou">Hesitou?</label>
+              <select id="hesitou" name="hesitou">
+                <option value="">Selecionar...</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </div>
+          </div>
+          <div class="field full-width">
+            <label for="observacoes">Anotações</label>
+            <textarea id="observacoes" name="observacoes" rows="3" placeholder="Detalhes relevantes sobre este trade..."></textarea>
+          </div>
+        </section>
+
+        <!-- PRINT -->
+        <section class="card">
+          <h2>Print do Trade</h2>
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="printTrade" name="printTrade" accept="image/*" />
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <span class="upload-icon">📷</span>
+              <span>Clique ou arraste a imagem aqui</span>
+            </div>
+            <img id="previewImg" src="" alt="Preview" style="display:none;" />
+          </div>
+        </section>
+
+      </form>
+    </div>
+
+    <div class="trade-modal-footer">
+      <button type="button" id="btnPreview" class="btn btn-secondary">👁 Pré-visualizar</button>
+      <button type="button" id="btnGenerate" class="btn btn-secondary">📄 PDF</button>
+      <button type="button" id="btnSave" class="btn btn-primary">💾 Salvar Operação</button>
     </div>
   </div>
+</div>
 
-  <script src="app.js"></script>
+<!-- ═══════════════════════════════════════
+     PDF PREVIEW MODAL
+════════════════════════════════════════ -->
+<div id="previewModal" class="modal" style="display:none;">
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Pré-visualização do PDF</h2>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div id="pdfPreview" class="pdf-preview"></div>
+    <div class="modal-actions">
+      <button type="button" id="btnDownload" class="btn btn-primary">⬇ Baixar PDF</button>
+      <button type="button" id="btnModalClose" class="btn btn-ghost">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Day trades list modal -->
+<div class="day-modal" id="dayModal">
+  <div class="trade-modal-overlay" id="dayModalOverlay"></div>
+  <div class="day-modal-panel">
+    <div class="trade-modal-header">
+      <div>
+        <div class="trade-modal-date" id="dayModalDate"></div>
+        <h2 class="trade-modal-title">Operações do dia</h2>
+      </div>
+      <button class="modal-close" id="dayModalClose">✕</button>
+    </div>
+    <div class="day-modal-body" id="dayModalBody"></div>
+    <div class="trade-modal-footer">
+      <button type="button" id="btnAddTrade" class="btn btn-primary">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Adicionar Operação
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
